@@ -1,0 +1,137 @@
+﻿<Page x:Class="Delivery_Service.Views.Pages.Admin.AddOrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Delivery_Service.Views.Pages.Admin" xmlns:viewmodels="clr-namespace:Delivery_Service.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddOrderViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1600"
+      Title="AddOrderPage">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFF3F1DA" Offset="0.788"/>
+                <GradientStop Color="#FF3482C5" Offset="0"/>
+                <GradientStop Color="#FFB1CAD2" Offset="0.531"/>
+                <GradientStop Color="#FFB1CAD2" Offset="0.289"/>
+                <GradientStop Color="#FFF3F1DA" Offset="0.891"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="700"/>
+
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="MenuBar" Grid.Row="0">
+
+            <TextBlock
+                Style="{StaticResource OutlinedTextBlock}"
+                x:Name="UserFullName"
+                FontSize="18"
+                FontFamily="Comic Sans MS"
+                HorizontalAlignment="Right"
+                Text="{Binding CurrentUserName}"
+                Width="350" Margin="0,0,0,56"
+                />
+
+            <TextBlock
+                x:Name="UserRole"
+                Style="{StaticResource OutlinedTextBlock}"
+                FontSize="18"
+                FontFamily="Comic Sans MS"
+                HorizontalAlignment="Right"
+                Text="{Binding CurrentUserRole}"
+                Width="250" Margin="0,50,0,19"
+                />
+
+
+            <Button Content="Список заказов" 
+                    Style="{StaticResource CustomButtonStyle}" 
+                    Height="50" 
+                    Width="300" 
+                    HorizontalAlignment="Left" 
+                    
+                    Margin="377,19,0,0" VerticalAlignment="Top" />
+
+            <Button Content="Курьеры" 
+                    Style="{StaticResource CustomButtonStyle}" 
+                    Height="50" 
+                    Width="300" 
+                    HorizontalAlignment="Left" 
+                    Command="{Binding }" Margin="47,19,0,0" VerticalAlignment="Top" />
+
+            <Button Content="Список блюд" 
+                    Style="{StaticResource CustomButtonStyle}" 
+                    Height="50" 
+                    Width="300" 
+                    Margin="0,19,500,0" 
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Right" 
+                     />
+        </Grid>
+
+        <Grid x:Name="ListAndSingleViews" Grid.Row="1" Margin="0,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="800"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="DishListView" Grid.Column="0" Margin="0,0,0,0">
+                <TextBlock Text="Блюда" FontFamily="Comic Sans MS" FontSize="16" Width="56" Margin="158,63,0,617" HorizontalAlignment="Left" FontWeight="Bold" />
+                <TextBlock Text="Курьеры" FontFamily="Comic Sans MS" FontSize="16" Width="70" Margin="469,63,0,612" HorizontalAlignment="Left" FontWeight="Bold" />
+                <ListBox x:Name="CourierList" Grid.Column="0" Margin="390,90,82,272" Style="{StaticResource RoundedListBoxStyle}" 
+                         ItemsSource="{Binding Couriers }" 
+                         SelectedItem="{Binding SelectedCourier}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Height="50" Text="{Binding Name}" Style="{StaticResource ListTextBlock}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <ListBox x:Name="DishList" Grid.Column="0" Margin="72,90,400,272" Style="{StaticResource RoundedListBoxStyle}" 
+                         ItemsSource="{Binding Dishes}" 
+                         SelectedItem="{Binding SelectedDish}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Height="50" Text="{Binding Name}" Style="{StaticResource ListTextBlock}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <StackPanel Grid.Column="1" Margin="0,0,0,0">
+
+                <TextBlock Text="Новый заказ" Style="{StaticResource ListTextBlock}" FontSize="18" Foreground="black"/>
+                <Label Content="Адрес:" Style="{StaticResource LabelStyle}" />
+                <TextBox Text="{Binding Address}" FontSize="16" Height="30" Width="700" Margin="0 0 0 0"/>
+                <Label Content="Имя клиента:" Style="{StaticResource LabelStyle}" />
+                <TextBox Text="{Binding ClientName}" FontSize="16" Height="30" Width="700"/>
+                <Label Content="Телефон:" Style="{StaticResource LabelStyle}" />
+                <TextBox Text="{Binding ClientPhone}" FontSize="16" Height="30" Width="700"/>
+                <Label Content="Комментарий к заказу:" Style="{StaticResource LabelStyle}" />
+                <TextBox Text="{Binding Comment}" FontSize="16" Height="30" Width="700"/>
+
+                <ListBox x:Name="DishesInOrder" Grid.Column="0" Margin="50,50,20,10" Style="{StaticResource RoundedListBoxStyle}" 
+                         ItemsSource="{Binding }" 
+                         SelectedItem="{Binding SelectedDish}" Height="200" Width="700" d:ItemsSource="{d:SampleData ItemCount=5}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Height="50" Text="{Binding Name}" Style="{StaticResource ListTextBlock}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Button Content="Сохранить заказ" 
+                    Style="{StaticResource CustomButtonStyle}" 
+                    Height="48" 
+                    Width="300" 
+                    Command="{Binding TryAddNewDishCommand}" />
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>

@@ -1,0 +1,88 @@
+﻿<Page x:Class="Delivery_Service.Views.Pages.Auth.SignUpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:viewmodel="clr-namespace:Delivery_Service.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:SignUpViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="515" d:DesignWidth="364"
+      Title="SignUpPage">
+      
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Page.Resources>
+    <Grid x:Name="RegistrationForm">
+
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFF3F1DA" Offset="0.788"/>
+                <GradientStop Color="#FF3482C5" Offset="0"/>
+                <GradientStop Color="#FFB1CAD2" Offset="0.531"/>
+                <GradientStop Color="#FFB1CAD2" Offset="0.289"/>
+                <GradientStop Color="#FFF3F1DA" Offset="0.891"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="427"/>
+            <RowDefinition Height="18"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="Toolbar" Background="Transparent" Grid.Row="0" MouseDown="Toolbar_MouseDown">
+            <StackPanel  Grid.Column="1" Margin="340,0,0,0">
+                <Image Height="25" Width="25" Source="/Views/Source/cross.png" MouseDown="Image_MouseDown" />
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="DataFields" Grid.Row="1">
+            <StackPanel x:Name="ChioceRole" Orientation="Horizontal">
+                <RadioButton x:Name="Admin" GroupName="Roles" Content="Администратор" Margin="70,-140,5,250" Style="{StaticResource RadioButtonStyle}" FontFamily="Comic Sans MS" FontSize="16" Height="24" VerticalContentAlignment="Center" Command="{Binding Path=SetRoleCommand}" CommandParameter="{Binding ElementName=Admin, Path=Name}" IsChecked="True"/>
+                <RadioButton x:Name="Courier" GroupName="Roles" Content="Курьер" Margin="10,-140,30,250" Style="{StaticResource RadioButtonStyle}" FontFamily="Comic Sans MS" FontSize="16" Height="24" VerticalContentAlignment="Center" Command="{Binding Path=SetRoleCommand}" CommandParameter="{Binding ElementName=Courier, Path=Name}"/>
+            </StackPanel>
+            
+            <Label x:Name="DescriptionUserNameField" Style="{StaticResource LabelStyle}"  Content="ФИО" Height="35" Margin="32,65,32,332"/>
+            <TextBox x:Name="UserName" 
+                     Height="35"
+                     Width="300" 
+                     Margin="32,95,32,297"  
+                     FontSize="16" 
+                     Text="{Binding UserName}"/>
+
+            <Label x:Name="DescriptionPhoneField" Style="{StaticResource LabelStyle}"  Content="Телефон" Height="35" Margin="32,135,32,262"/>
+            <TextBox x:Name="Phone" 
+                     Height="35" 
+                     Width="300" 
+                     Margin="32,165,32,227"  
+                     FontSize="16" 
+                     Text="{Binding Phone}"/>
+
+            <Label x:Name="DescriptionPasswordField" Style="{StaticResource LabelStyle}" Content="Пароль" Height="35" Margin="32,195,32,177"/>
+
+            <TextBox x:Name="Password"
+                     Height="35"
+                     Width="300"
+                     Margin="32,160,32,81"
+                     FontSize="16"
+                     Text="{Binding Password}"/>
+
+            <Label x:Name="DescriptionRepeatedPasswordField" Style="{StaticResource LabelStyle}" Content="Повторите Пароль" Height="35" Margin="32,265,32,95"/>
+
+            <TextBox x:Name="RepeatedPassword"
+                     Height="35"
+                     Width="300"
+                     Margin="32,311,32,81"
+                     FontSize="16"
+                     Text="{Binding RepeatedPassword}"/>
+
+            <Button Content="Зарегистрироваться" Style="{StaticResource CustomButtonStyle}" Height="48" Width="299" Margin="32,369,32,0" VerticalAlignment="Top" HorizontalAlignment="Right" Command="{Binding RegistrationCommand}"/>
+        </Grid>
+
+        <Grid x:Name="LoginLink" Grid.Row="3" Margin="0,0,0,-40">
+            <StackPanel  Width="132" Height="38" Margin="2,0,20,30">
+                <TextBlock Height="38" Width="132" FontFamily="Comic Sans MS" FontSize="15"><Hyperlink x:Name="HLinkRegistration" Click="HLinkLogin_Click">Уже есть аккаунт.../></Hyperlink></TextBlock>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>
