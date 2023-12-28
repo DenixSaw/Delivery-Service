@@ -80,7 +80,7 @@ namespace Delivery_Service.ViewModels {
         }
 
         private void DeleteSelectedDish() {
-            if (_dishCUDInteractor.TryDelete(SelectedDish)) {
+            if (SelectedDish != null && _dishCUDInteractor.TryDelete(SelectedDish)) {
                 Dishes?.Remove(SelectedDish);
             } else { MessageBox.Show("Ошибка при удалении блюда из списка"); }
         }

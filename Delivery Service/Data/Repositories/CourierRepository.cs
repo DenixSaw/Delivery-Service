@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using System.Threading.Tasks;
 using System.IO;
 using Delivery_Service.Model.Users.User.Roles.Courier;
@@ -19,7 +18,7 @@ namespace Delivery_Service.Data.Repositories {
             if (courier == null || _couriers?.Find(e => e.UserId == courier.UserId) != null) { return false; }
             _couriers?.Add(courier);
             //string json = JsonSerializer.Serialize(_couriers, new JsonSerializerOptions() { WriteIndented = true });
-            string json = JsonConvert.SerializeObject(_couriers);
+            string json = JsonConvert.SerializeObject(_couriers, Formatting.Indented, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
             File.WriteAllText(_path, json);
             return true;
         }
@@ -30,7 +29,7 @@ namespace Delivery_Service.Data.Repositories {
             if (_couriers.Contains(courier)) {
                 _couriers.Remove(courier);
                 //string json = JsonSerializer.Serialize(_couriers, new JsonSerializerOptions() { WriteIndented = true });
-                string json = JsonConvert.SerializeObject(_couriers);
+                string json = JsonConvert.SerializeObject(_couriers, Formatting.Indented, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
                 File.WriteAllText(_path, json);
                 return true;
             }
@@ -41,7 +40,7 @@ namespace Delivery_Service.Data.Repositories {
 
             if (File.Exists(_path)) {
                 string json = File.ReadAllText(_path);
-                List<ICourier>? couriers = JsonConvert.DeserializeObject<List<ICourier>>(json);
+                List<ICourier>? couriers = JsonConvert.DeserializeObject<List<ICourier>>(json, new JsonSerializerSettings() {TypeNameHandling = TypeNameHandling.All });
                 //List<ICourier>? couriers = JsonSerializer.Deserialize<List<ICourier>>(File.ReadAllText(_path));
                 if (couriers != null) {
                     var result = new List<ICourier>();
@@ -60,7 +59,7 @@ namespace Delivery_Service.Data.Repositories {
             for (int i = 0; i < _couriers?.Count; i++) {
                 if (_couriers[i].UserId == courier.UserId) {
                     _couriers[i] = courier;
-                    string json = JsonConvert.SerializeObject(_couriers);
+                    string json = JsonConvert.SerializeObject(_couriers, Formatting.Indented, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
                     //string json = JsonSerializer.Serialize(_couriers, new JsonSerializerOptions() { WriteIndented = true });
                     File.WriteAllText(_path, json);
                     return true;

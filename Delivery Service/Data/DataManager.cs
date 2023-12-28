@@ -37,11 +37,15 @@ namespace Delivery_Service.Data {
         private readonly IBaseRepository<ICourier> _courierRepository;
         public IBaseRepository<ICourier> CourierRepository => _courierRepository;
 
-        public DataManager(IBaseRepository<IAdmin> adminRepository, IBaseRepository<IUser> userRepository, IBaseRepository<ICourier> courierRepository, IBaseRepository<IProduct> dichRepository) {
+        private readonly IBaseRepository<IOrder> _orderRepository;
+        public IBaseRepository<IOrder> OrderRepository => _orderRepository;
+
+        public DataManager(IBaseRepository<IAdmin> adminRepository, IBaseRepository<IUser> userRepository, IBaseRepository<ICourier> courierRepository, IBaseRepository<IProduct> dichRepository, IBaseRepository<IOrder> orderRepository) {
             _adminRepository = adminRepository;
             _userRepository = userRepository;
             _courierRepository = courierRepository;
             _dishRepository = dichRepository;
+            _orderRepository = orderRepository;
         }
     }
 }

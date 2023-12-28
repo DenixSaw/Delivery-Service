@@ -26,6 +26,11 @@ namespace Delivery_Service.Views.Pages.Admin {
             InitializeComponent();
             DataContext = new AddOrderViewModel(_datamanager);
         }
+
+        private void ListOrderPage(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new ListOrderPage(_datamanager));
+
+        }
     }
 
 

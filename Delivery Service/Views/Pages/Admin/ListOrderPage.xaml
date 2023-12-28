@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Delivery_Service.Views.Pages.Admin"
+      xmlns:local="clr-namespace:Delivery_Service.Views.Pages.Admin" xmlns:viewmodels="clr-namespace:Delivery_Service.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:ListOrderViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1600"
       Title="ListOrderPage">
@@ -64,19 +64,19 @@
                     Command="{Binding }" Margin="47,19,0,0" VerticalAlignment="Top" />
         </Grid>
 
-        <Grid x:Name="ListAndSingleViews" Grid.Row="1" Margin="0,0,0,106">
+        <Grid x:Name="ListAndSingleViews" Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="800"/>
                 <ColumnDefinition Width="800"/>
             </Grid.ColumnDefinitions>
 
-            <Grid x:Name="DishListView" Grid.Column="0">
-                <ListBox x:Name="DishList" Grid.Column="0" Margin="50,49,76,130" Style="{StaticResource RoundedListBoxStyle}" 
+            <Grid x:Name="OrderListView" Grid.Column="0">
+                <ListBox x:Name="OrderList" Grid.Column="0" Margin="50,49,76,205" Style="{StaticResource RoundedListBoxStyle}" 
                          ItemsSource="{Binding Orders}" 
-                         SelectedItem="{Binding SelectedOrder}">
+                         SelectedItem="{Binding SelectedOrder}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Height="50" Text="{Binding Name}" Style="{StaticResource ListTextBlock}"/>
+                            <TextBlock Height="50" Text="{Binding Address}" Style="{StaticResource ListTextBlock}"/>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -97,22 +97,59 @@
                     Margin="0,500,76,0" 
                     VerticalAlignment="Top" 
                     HorizontalAlignment="Right" 
-                    Command="{Binding }" />
+                    Command="{Binding DeleteOrderCommand}" />
             </Grid>
 
             <StackPanel Grid.Column="1">
 
                 <TextBlock Text="{Binding SelectedOrder.Name}" Style="{StaticResource ListTextBlock}" FontSize="18" />
 
-                <Label Content="Описание:" Style="{StaticResource LabelStyle}" />
-                <TextBlock Text="{Binding SelectedOrder.Title}" FontSize="16"/>
-                <Label Content="Вес (грамм):" Style="{StaticResource LabelStyle}" />
-                <TextBlock Text="{Binding SelectedDish.Weight}" FontSize="16"/>
-                <Label Content="Цена:" Style="{StaticResource LabelStyle}" />
-                <TextBlock Text="{Binding SelectedDish.Price}" FontSize="16"/>
+                <Label Content="Дата добавления:" Style="{StaticResource LabelStyle}" Width="146" HorizontalAlignment="Left"/>
+                <TextBlock Text="{Binding SelectedOrder.DateOfAdding}" FontSize="16" Width="180" Margin="-45,-28,280,5"/>
+                <Label Content="Адрес:" Style="{StaticResource LabelStyle}" Width="60" Margin="-50,-36,20,0"/>
+                <TextBlock Text="{Binding SelectedOrder.Address}" FontSize="16" Width="345" Margin="360,-30,20,0"/>
+                <Label Content="Данные клиента:" Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text="{Binding SelectedOrder.Client.Name}" FontSize="16"/>
+                <TextBlock Text="{Binding SelectedOrder.Client.Phone}" FontSize="16"/>
+
+                <Label Content="Список блюд:" Style="{StaticResource LabelStyle}"/>
+                <ListBox Height="185" Style="{StaticResource RoundedListBoxStyle}" ItemsSource="{Binding SelectedOrder.Products}" Margin="0,0,70,0" Width="700">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Height="50" Text="{Binding Product.Name}" Style="{StaticResource ListTextBlock}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                
+                    <Label Content="Комментарий:" Style="{StaticResource LabelStyle}"/>
+                    <TextBlock Text="{Binding SelectedOrder.Comment}" FontSize="16" Height="56"/>
+                    <Label Content="Курьер:" Style="{StaticResource LabelStyle}" Width="70" HorizontalAlignment="Left"/>
+                    <TextBlock Text="{Binding Courier}" FontSize="16" Height="25" Width="126" Margin="-10,-30,520,0"/>
+
+                <Label Content="Стоимость:" Style="{StaticResource LabelStyle}" Width="100" HorizontalAlignment="Left" Margin="220,-35,100,0" Height="28"/>
+                <TextBlock Text="{Binding SelectedOrder.TotalCost}" FontSize="16" Height="30" Width="140" Margin="-10,-27,10,0"/>
+
+                <Label Content="Способ оплаты:" Style="{StaticResource LabelStyle}" Width="134" HorizontalAlignment="Left" Margin="460,-40,100,0" Height="28"/>
+                <TextBlock Text="{Binding PaymentMethod}" FontSize="16" Height="30" Width="176" Margin="570,-28,10,0"/>
+                <Label Content="Статус заказа:" Style="{StaticResource LabelStyle}" Width="134" HorizontalAlignment="Left" Margin="0,10,100,0" Height="35"/>
+                <TextBlock Text="{Binding OrderStatus}" FontSize="16" Height="30" Width="176" Margin="-370,-30,10,0"/>
+                <StackPanel Orientation="Horizontal" Width="325" HorizontalAlignment="Left">
+                    <Label Content="Новый статус:" Style="{StaticResource LabelStyle}" />
+                    <RadioButton x:Name="New"  GroupName="OrderStatus" Content="Новый" Margin="10 0 0 0"  Style="{StaticResource RadioButtonStyle}" FontFamily="Comic Sans MS" FontSize="16" Height="24" VerticalContentAlignment="Center" Command="{Binding Path=SetNewOrderStatusCommand}" CommandParameter="{Binding ElementName=New, Path=Name}" IsChecked="True"/>
+                    <RadioButton x:Name="Delivered" GroupName="OrderStatus" Content="Доставлен"  Margin="10 0 0 0" Style="{StaticResource RadioButtonStyle}" FontFamily="Comic Sans MS" FontSize="16" Height="24" VerticalContentAlignment="Center" Command="{Binding Path=SetNewOrderStatusCommand}" CommandParameter="{Binding ElementName=Delivered, Path=Name}"/>
+                </StackPanel>
+                <Button Content="Установить статус" 
+                    Style="{StaticResource CustomButtonStyle}" 
+                    Height="48" 
+                    Width="299" 
+                    Margin="10,-40,120,50" 
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Right" 
+                    Command="{Binding SetActualOrderStatusCommand}" />
+
             </StackPanel>
         </Grid>
 
     </Grid>
-    
+
 </Page>

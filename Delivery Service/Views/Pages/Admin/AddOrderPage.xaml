@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Delivery_Service.Views.Pages.Admin" xmlns:viewmodels="clr-namespace:Delivery_Service.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddOrderViewModel}"
+      xmlns:viewmodels="clr-namespace:Delivery_Service.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AddOrderViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1600"
       Title="AddOrderPage">
@@ -53,7 +53,7 @@
                     Height="50" 
                     Width="300" 
                     HorizontalAlignment="Left" 
-                    
+                    Click="ListOrderPage"
                     Margin="377,19,0,0" VerticalAlignment="Top" />
 
             <Button Content="Курьеры" 
@@ -75,16 +75,16 @@
 
         <Grid x:Name="ListAndSingleViews" Grid.Row="1" Margin="0,0,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="700"/>
-                <ColumnDefinition Width="800"/>
+                <ColumnDefinition Width="795"/>
+                <ColumnDefinition Width="705"/>
             </Grid.ColumnDefinitions>
 
-            <Grid x:Name="DishListView" Grid.Column="0" Margin="0,0,0,0">
-                <TextBlock Text="Блюда" FontFamily="Comic Sans MS" FontSize="16" Width="56" Margin="158,63,0,617" HorizontalAlignment="Left" FontWeight="Bold" />
-                <TextBlock Text="Курьеры" FontFamily="Comic Sans MS" FontSize="16" Width="70" Margin="469,63,0,612" HorizontalAlignment="Left" FontWeight="Bold" />
-                <ListBox x:Name="CourierList" Grid.Column="0" Margin="390,90,82,272" Style="{StaticResource RoundedListBoxStyle}" 
-                         ItemsSource="{Binding Couriers }" 
-                         SelectedItem="{Binding SelectedCourier}">
+            <Grid x:Name="DishListView" Grid.Column="0">
+                <TextBlock Text="Блюда" FontFamily="Comic Sans MS" FontSize="24" Width="85" Margin="195,42,0,628" HorizontalAlignment="Left" FontWeight="Bold" />
+                <TextBlock Text="Курьеры" FontFamily="Comic Sans MS" FontSize="24" Width="104" Margin="548,42,0,626" HorizontalAlignment="Left" FontWeight="Bold" />
+                <ListBox x:Name="CourierList" Grid.Column="0" Margin="435,85,30,239" Style="{StaticResource RoundedListBoxStyle}" 
+                         ItemsSource="{Binding Couriers}" 
+                         SelectedItem="{Binding SelectedCourier}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Height="50" Text="{Binding Name}" Style="{StaticResource ListTextBlock}"/>
@@ -92,44 +92,54 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
 
-                <ListBox x:Name="DishList" Grid.Column="0" Margin="72,90,400,272" Style="{StaticResource RoundedListBoxStyle}" 
-                         ItemsSource="{Binding Dishes}" 
-                         SelectedItem="{Binding SelectedDish}">
+
+                <ListBox x:Name="QuantityDishMap" Grid.Column="0" Margin="50,85,397,239" Style="{StaticResource RoundedListBoxStyle}" ItemsSource="{Binding QuantityDishMap}" FocusVisualStyle="{x:Null}" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Height="50" Text="{Binding Name}" Style="{StaticResource ListTextBlock}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Height="50" Text="{Binding Product.Name}" Style="{StaticResource ListTextBlock}"/>
+                                <Button Grid.Column="1" Content="+" Command="{Binding DataContext.IncreaseQuantityCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}" CommandParameter="{Binding .}" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30" />
+                                <TextBlock Grid.Column="2" Height="50" Text="{Binding Quantity}" Style="{StaticResource ListTextBlock}" />
+                                <Button Grid.Column="3" Content="-" Command="{Binding DataContext.DecreaseQuantityCommand, RelativeSource={RelativeSource AncestorType={x:Type Page}}}" CommandParameter="{Binding .}" Style="{StaticResource CustomButtonStyle}" Width="30" Height="30"/>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
             </Grid>
 
-            <StackPanel Grid.Column="1" Margin="0,0,0,0">
-
-                <TextBlock Text="Новый заказ" Style="{StaticResource ListTextBlock}" FontSize="18" Foreground="black"/>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Новый заказ" Style="{StaticResource ListTextBlock}" FontSize="24" Foreground="black"/>
                 <Label Content="Адрес:" Style="{StaticResource LabelStyle}" />
-                <TextBox Text="{Binding Address}" FontSize="16" Height="30" Width="700" Margin="0 0 0 0"/>
+                <TextBox Text="{Binding Address}" FontSize="16" Height="30" Width="700" Margin="0 0 0 0" HorizontalAlignment="Left"/>
                 <Label Content="Имя клиента:" Style="{StaticResource LabelStyle}" />
-                <TextBox Text="{Binding ClientName}" FontSize="16" Height="30" Width="700"/>
+                <TextBox Text="{Binding ClientName}" FontSize="16" Height="30" Width="700" HorizontalAlignment="Left"/>
                 <Label Content="Телефон:" Style="{StaticResource LabelStyle}" />
-                <TextBox Text="{Binding ClientPhone}" FontSize="16" Height="30" Width="700"/>
+                <TextBox Text="{Binding ClientPhone}" FontSize="16" Height="30" Width="700" HorizontalAlignment="Left"/>
                 <Label Content="Комментарий к заказу:" Style="{StaticResource LabelStyle}" />
-                <TextBox Text="{Binding Comment}" FontSize="16" Height="30" Width="700"/>
-
-                <ListBox x:Name="DishesInOrder" Grid.Column="0" Margin="50,50,20,10" Style="{StaticResource RoundedListBoxStyle}" 
-                         ItemsSource="{Binding }" 
-                         SelectedItem="{Binding SelectedDish}" Height="200" Width="700" d:ItemsSource="{d:SampleData ItemCount=5}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Height="50" Text="{Binding Name}" Style="{StaticResource ListTextBlock}"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <TextBox Text="{Binding Comment}" FontSize="16" Height="30" Width="700" HorizontalAlignment="Left"/>
+                <Label Content="Курьер:" Style="{StaticResource LabelStyle}" />
+                <TextBox Text="{Binding SelectedCourier.Name}" FontSize="16" Height="30" Width="700" HorizontalAlignment="Left" IsEnabled="False"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Способ оплаты:" Style="{StaticResource LabelStyle}" />
+                    <RadioButton x:Name="CashPayment"  GroupName="Roles" Content="Наличными" Margin="10 0 0 0"  Style="{StaticResource RadioButtonStyle}" FontFamily="Comic Sans MS" FontSize="16" Height="24" VerticalContentAlignment="Center" Command="{Binding Path=SetPaymentMethodCommand}" CommandParameter="{Binding ElementName=CashPayment, Path=Name}" IsChecked="True"/>
+                    <RadioButton x:Name="PaymentByCard" GroupName="Roles" Content="Картой"  Margin="10 0 0 0" Style="{StaticResource RadioButtonStyle}" FontFamily="Comic Sans MS" FontSize="16" Height="24" VerticalContentAlignment="Center" Command="{Binding Path=SetPaymentMethodCommand}" CommandParameter="{Binding ElementName=PaymentByCard, Path=Name}"/>
+                    <RadioButton x:Name="PaymentByCardToCourier" GroupName="Roles" Content="Картой курьеру"  Margin="10 0 0 0" Style="{StaticResource RadioButtonStyle}" FontFamily="Comic Sans MS" FontSize="16" Height="24" VerticalContentAlignment="Center" Command="{Binding Path=SetPaymentMethodCommand}" CommandParameter="{Binding ElementName=PaymentByCardToCourier, Path=Name}"/>
+                </StackPanel>
+                <Label Content="Стоимость:" Style="{StaticResource LabelStyle}" />
+                <TextBox Text="{Binding Cost}" FontSize="16" Height="30" Width="130" HorizontalAlignment="Left" IsEnabled="False"/>
 
                 <Button Content="Сохранить заказ" 
                     Style="{StaticResource CustomButtonStyle}" 
                     Height="48" 
                     Width="300" 
-                    Command="{Binding TryAddNewDishCommand}" />
+                    Command="{Binding TryAddOrderCommand}" />
             </StackPanel>
         </Grid>
 

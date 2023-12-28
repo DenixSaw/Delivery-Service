@@ -57,10 +57,10 @@ namespace Delivery_Service.ViewModel {
         private void Login() {
             AuthService authService = new(_dataManager);
             if (authService.TrySignIn(_phone, _password, _role) && (_role == "Admin")) {
-                MessageBox.Show(_dataManager?.CurrentUser.Name, _dataManager.CurrentUser.Phone);
+                MessageBox.Show(_dataManager?.CurrentUser?.Name, _dataManager?.CurrentUser?.Phone);
                 AdminLogInSuccess?.Invoke();
                 
-            } else { MessageBox.Show("No"); }
+            } else { MessageBox.Show("Проверьте данные пользователя"); }
             
         }
 

@@ -16,6 +16,7 @@ namespace Delivery_Service.Data {
         public IBaseRepository<IUser> UserRepository { get; }
         public IBaseRepository<ICourier> CourierRepository { get; }
         public IBaseRepository<IAdmin> AdminRepository { get; }
+        public IBaseRepository<IOrder> OrderRepository { get; }
 
         public IBaseRepository<IProduct> DishRepository { get; }
 

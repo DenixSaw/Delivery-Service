@@ -8,17 +8,20 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Delivery_Service.Model.Interfaces {
-    [JsonDerivedType(typeof(Order))]
+    //[JsonDerivedType(typeof(Order))]
+
     public interface IOrder {
         Guid Id { get; }
         DateTime DateOfAdding { get; }
         decimal TotalCost { get; }
         IClient Client { get; }
         string Address { get; set; }
-        List<Tuple<IProduct, int>> Products { get; set; }
+        IList<ICartObject> Products { get; set; }
         Guid Courier { get; set; }
         string Comment { get; set; }
         PaymentMethod PaymentMethod { get; set; }
+
+        OrderStatus OrderStatus { get; set; }
 
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Delivery_Service.Services {
     public interface IBaseCUDInteractor<T> {
-        public T? TryAdd(IProduct item);
+        public T? TryAdd(T item);
 
         public bool TryUpdate(T item);
         public bool TryDelete(T item);

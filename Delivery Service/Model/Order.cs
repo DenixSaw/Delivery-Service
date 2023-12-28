@@ -3,6 +3,7 @@ using Delivery_Service.Model.Interfaces;
 using Delivery_Service.Utils;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Delivery_Service.Entities {
 
@@ -32,22 +33,23 @@ namespace Delivery_Service.Entities {
 
         public IClient Client { get; set; }
 
-        public List<Tuple<IProduct, int>> Products { get; set; }
+        public IList<ICartObject> Products { get; set; }
 
         public PaymentMethod PaymentMethod { get; set; }
 
-        public  OrderStatus OrderStatus { get; set; }
+        public OrderStatus OrderStatus { get; set; }
 
-        public Order(Guid Id, DateTime DateOfAdding, List<Tuple<IProduct, int>> Products, string Address, IClient Client, string Comment, PaymentMethod paymentMethod, Guid Courier, OrderStatus OrderStatus) {
+        public Order(Guid Id, DateTime DateOfAdding, IList<ICartObject> Products, string Address, IClient Client, string Comment, PaymentMethod PaymentMethod, Guid Courier, OrderStatus OrderStatus, decimal TotalCost) {
             this.Id = Id;
             this.DateOfAdding = DateOfAdding;
             this.Products = Products;
             this.Address = Address;
             this.Comment = Comment;
-            this.PaymentMethod = paymentMethod;
+            this.PaymentMethod = PaymentMethod;
             this.Courier = Courier;
             this.Client = Client;
             this.OrderStatus = OrderStatus;
+            this.TotalCost = TotalCost;
         }
     }
 }

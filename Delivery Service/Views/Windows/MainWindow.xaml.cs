@@ -13,7 +13,7 @@ namespace Delivery_Service {
     /// </summary>
     public partial class MainWindow : Window {
 
-        private IDataManager _dataManager = new DataManager(new AdminRepository(), new UserRepository(), new CourierRepository(), new DishRepository());
+        private IDataManager _dataManager = new DataManager(new AdminRepository(), new UserRepository(), new CourierRepository(), new DishRepository(), new OrderRepository());
 
         public MainWindow() {
             InitializeComponent();
