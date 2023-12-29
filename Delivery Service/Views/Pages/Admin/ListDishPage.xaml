@@ -54,14 +54,7 @@
                     Width="300" 
                     HorizontalAlignment="Left" 
                     Click="OrderList_Click"
-                    Margin="422,19,0,0" VerticalAlignment="Top" />
-
-            <Button Content="Курьеры" 
-                    Style="{StaticResource CustomButtonStyle}" 
-                    Height="50" 
-                    Width="300" 
-                    HorizontalAlignment="Left" 
-                    Command="{Binding }" Margin="47,19,0,0" VerticalAlignment="Top" />
+                    Margin="248,23,0,0" />
         </Grid>
 
         <Grid x:Name="ListAndSingleViews" Grid.Row="1" Margin="0,0,0,106">
@@ -71,6 +64,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid x:Name="DishListView" Grid.Column="0">
+                <Label Content="Блюда" FontSize="28" Style="{StaticResource LabelStyle}" HorizontalAlignment="Left" Margin="336,0,0,0"/>
                 <ListBox x:Name="DishList" Grid.Column="0" Margin="50,49,76,130" Style="{StaticResource RoundedListBoxStyle}" 
                          ItemsSource="{Binding Dishes}" 
                          SelectedItem="{Binding SelectedDish}">

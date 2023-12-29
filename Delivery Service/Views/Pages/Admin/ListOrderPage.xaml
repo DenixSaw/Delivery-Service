@@ -54,14 +54,7 @@
                     Width="300" 
                     HorizontalAlignment="Left" 
                     Click="DishList_Click"
-                    Margin="422,19,0,0" VerticalAlignment="Top" />
-
-            <Button Content="Курьеры" 
-                    Style="{StaticResource CustomButtonStyle}" 
-                    Height="50" 
-                    Width="300" 
-                    HorizontalAlignment="Left" 
-                    Command="{Binding }" Margin="47,19,0,0" VerticalAlignment="Top" />
+                    Margin="248,23,0,0" VerticalAlignment="Top" />
         </Grid>
 
         <Grid x:Name="ListAndSingleViews" Grid.Row="1">
@@ -71,6 +64,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid x:Name="OrderListView" Grid.Column="0">
+                <Label Content="Заказы" HorizontalAlignment="Left" FontSize="28" Style="{StaticResource LabelStyle}" Margin="335,0,0,651"/>
                 <ListBox x:Name="OrderList" Grid.Column="0" Margin="50,49,76,205" Style="{StaticResource RoundedListBoxStyle}" 
                          ItemsSource="{Binding Orders}" 
                          SelectedItem="{Binding SelectedOrder}" d:ItemsSource="{d:SampleData ItemCount=5}">
@@ -116,21 +110,34 @@
                 <ListBox Height="185" Style="{StaticResource RoundedListBoxStyle}" ItemsSource="{Binding SelectedOrder.Products}" Margin="0,0,70,0" Width="700">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Height="50" Text="{Binding Product.Name}" Style="{StaticResource ListTextBlock}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Content="Название:" HorizontalAlignment="Center"/>
+                                <Label Grid.Column="1" Content="Цена:" HorizontalAlignment="Center"/>
+                                <Label Grid.Column="2" Content="Кол-во:" HorizontalAlignment="Center"/>
+                                <TextBlock Height="50" Grid.Column="0" Text="{Binding Product.Name}" Style="{StaticResource ListTextBlock}"/>
+                                <TextBlock Height="50" Grid.Column="1" Text="{Binding Product.Price}" Style="{StaticResource ListTextBlock}"/>
+                                <TextBlock Height="50" Grid.Column="2" Text="{Binding Quantity}" Style="{StaticResource ListTextBlock}"/>
+
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                
-                    <Label Content="Комментарий:" Style="{StaticResource LabelStyle}"/>
-                    <TextBlock Text="{Binding SelectedOrder.Comment}" FontSize="16" Height="56"/>
-                    <Label Content="Курьер:" Style="{StaticResource LabelStyle}" Width="70" HorizontalAlignment="Left"/>
-                    <TextBlock Text="{Binding Courier}" FontSize="16" Height="25" Width="126" Margin="-10,-30,520,0"/>
 
-                <Label Content="Стоимость:" Style="{StaticResource LabelStyle}" Width="100" HorizontalAlignment="Left" Margin="220,-35,100,0" Height="28"/>
-                <TextBlock Text="{Binding SelectedOrder.TotalCost}" FontSize="16" Height="30" Width="140" Margin="-10,-27,10,0"/>
+                <Label Content="Комментарий:" Style="{StaticResource LabelStyle}"/>
+                <TextBlock Text="{Binding SelectedOrder.Comment}" FontSize="16" Height="56"/>
+                <Label Content="Курьер:" Style="{StaticResource LabelStyle}" Width="70" HorizontalAlignment="Left"/>
+                <TextBlock Text="{Binding Courier}" FontSize="16" Height="25" Width="323" Margin="70,-30,520,0"/>
 
-                <Label Content="Способ оплаты:" Style="{StaticResource LabelStyle}" Width="134" HorizontalAlignment="Left" Margin="460,-40,100,0" Height="28"/>
-                <TextBlock Text="{Binding PaymentMethod}" FontSize="16" Height="30" Width="176" Margin="570,-28,10,0"/>
+                <Label Content="Стоимость:" Style="{StaticResource LabelStyle}" Width="100" HorizontalAlignment="Left" Margin="0,-3,100,0" Height="28"/>
+                <TextBlock Text="{Binding SelectedOrder.TotalCost}" FontSize="16" Height="30" Width="140" Margin="100,-25,10,0" HorizontalAlignment="Left"/>
+
+                <Label Content="Способ оплаты:" Style="{StaticResource LabelStyle}" Width="134" HorizontalAlignment="Left" Margin="300,-40,100,0" Height="28"/>
+                <TextBlock Text="{Binding PaymentMethod}" FontSize="16" Height="30" Width="176" Margin="255,-28,10,0"/>
                 <Label Content="Статус заказа:" Style="{StaticResource LabelStyle}" Width="134" HorizontalAlignment="Left" Margin="0,10,100,0" Height="35"/>
                 <TextBlock Text="{Binding OrderStatus}" FontSize="16" Height="30" Width="176" Margin="-370,-30,10,0"/>
                 <StackPanel Orientation="Horizontal" Width="325" HorizontalAlignment="Left">

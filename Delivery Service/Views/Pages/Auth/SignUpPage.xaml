@@ -49,7 +49,7 @@
                      FontSize="16" 
                      Text="{Binding UserName}"/>
 
-            <Label x:Name="DescriptionPhoneField" Style="{StaticResource LabelStyle}"  Content="Телефон" Height="35" Margin="32,135,32,262"/>
+            <Label x:Name="DescriptionPhoneField" Style="{StaticResource LabelStyle}"  Content="Телефон (без +7)" Height="35" Margin="32,135,32,262"/>
             <TextBox x:Name="Phone" 
                      Height="35" 
                      Width="300" 

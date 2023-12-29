@@ -17,7 +17,6 @@ namespace Delivery_Service.Data.Repositories {
         public bool Add(ICourier courier) {
             if (courier == null || _couriers?.Find(e => e.UserId == courier.UserId) != null) { return false; }
             _couriers?.Add(courier);
-            //string json = JsonSerializer.Serialize(_couriers, new JsonSerializerOptions() { WriteIndented = true });
             string json = JsonConvert.SerializeObject(_couriers, Formatting.Indented, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
             File.WriteAllText(_path, json);
             return true;
@@ -28,7 +27,6 @@ namespace Delivery_Service.Data.Repositories {
 
             if (_couriers.Contains(courier)) {
                 _couriers.Remove(courier);
-                //string json = JsonSerializer.Serialize(_couriers, new JsonSerializerOptions() { WriteIndented = true });
                 string json = JsonConvert.SerializeObject(_couriers, Formatting.Indented, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
                 File.WriteAllText(_path, json);
                 return true;
@@ -41,7 +39,6 @@ namespace Delivery_Service.Data.Repositories {
             if (File.Exists(_path)) {
                 string json = File.ReadAllText(_path);
                 List<ICourier>? couriers = JsonConvert.DeserializeObject<List<ICourier>>(json, new JsonSerializerSettings() {TypeNameHandling = TypeNameHandling.All });
-                //List<ICourier>? couriers = JsonSerializer.Deserialize<List<ICourier>>(File.ReadAllText(_path));
                 if (couriers != null) {
                     var result = new List<ICourier>();
                     result.AddRange(couriers);
@@ -60,7 +57,6 @@ namespace Delivery_Service.Data.Repositories {
                 if (_couriers[i].UserId == courier.UserId) {
                     _couriers[i] = courier;
                     string json = JsonConvert.SerializeObject(_couriers, Formatting.Indented, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
-                    //string json = JsonSerializer.Serialize(_couriers, new JsonSerializerOptions() { WriteIndented = true });
                     File.WriteAllText(_path, json);
                     return true;
                 }

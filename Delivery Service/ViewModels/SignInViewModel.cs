@@ -60,7 +60,7 @@ namespace Delivery_Service.ViewModel {
                 MessageBox.Show(_dataManager?.CurrentUser?.Name, _dataManager?.CurrentUser?.Phone);
                 AdminLogInSuccess?.Invoke();
                 
-            } else { MessageBox.Show("Проверьте данные пользователя"); }
+            } else { MessageBox.Show("Проверьте корректность данных"); }
             
         }
 

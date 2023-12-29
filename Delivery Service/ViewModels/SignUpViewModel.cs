@@ -6,6 +6,7 @@ using Delivery_Service.Views.Pages.Auth;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Navigation;
@@ -69,18 +70,20 @@ namespace Delivery_Service.ViewModel {
             RegistrationCommand = new RelayCommand(Registration);
             SetRoleCommand = new Command(SetRole, canexecutemethod => Role != null);
         }
-      
+
         private void SetRole(object parameter) {
             Role = (string)parameter;
         }
 
         private void Registration() {
+            Regex phoneRegex = new(@"^[0-9]{10}$");
+            Regex passwordRegex = new(@"^[a-zA-Z0-9]{6,}$");
             string errorMessage = "";
-            if (!RegexGenerator.GetRegex(RegexPatterns.PhonePattern).IsMatch(Phone))
+            if (!phoneRegex.IsMatch(Phone))
                 errorMessage += "Проверьте корректность телефона\n";
             if (UserName.Length == 0)
                 errorMessage += "Поле ФИО не может быть пустым\n";
-            if (!RegexGenerator.GetRegex(RegexPatterns.PasswordPattern).IsMatch(Password))
+            if (!passwordRegex.IsMatch(Password))
                 errorMessage += "Пароль должен иметь длину не менее 6 и содержать только буквы английского алфавита и цифры\n";
             if (Password != RepeatedPassword)
                 errorMessage += "Пароли не совпадают\n";
@@ -88,7 +91,10 @@ namespace Delivery_Service.ViewModel {
             if (errorMessage.Length > 0)
                 MessageBox.Show(errorMessage);
             else {
-                MessageBox.Show(_authService.TrySignUp(_userName, _phone, _password, _repeatedPassword, _role).ToString());
+                if(_authService.TrySignUp(UserName,Phone,Password,RepeatedPassword, Role)) {
+                    MessageBox.Show("Вы успешно зарегистрировались");
+
+                }
             }
 
         }

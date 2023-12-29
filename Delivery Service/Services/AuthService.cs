@@ -32,6 +32,7 @@ namespace Delivery_Service.Services {
 
         public bool TrySignUp(string name, string phone, string password, string repeatedPassword, string role) {
             var users = _dataManager.UserRepository.GetAll();
+            _dataManager.CourierRepository.GetAll();
 
             if (users != null) {
                 foreach (var user in users) {

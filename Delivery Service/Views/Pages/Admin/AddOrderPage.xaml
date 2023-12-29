@@ -54,22 +54,16 @@
                     Width="300" 
                     HorizontalAlignment="Left" 
                     Click="ListOrderPage"
-                    Margin="377,19,0,0" VerticalAlignment="Top" />
-
-            <Button Content="Курьеры" 
-                    Style="{StaticResource CustomButtonStyle}" 
-                    Height="50" 
-                    Width="300" 
-                    HorizontalAlignment="Left" 
-                    Command="{Binding }" Margin="47,19,0,0" VerticalAlignment="Top" />
+                    Margin="74,23,0,0" VerticalAlignment="Top" />
 
             <Button Content="Список блюд" 
                     Style="{StaticResource CustomButtonStyle}" 
                     Height="50" 
                     Width="300" 
-                    Margin="0,19,500,0" 
+                    Margin="0,23,839,0" 
                     VerticalAlignment="Top" 
                     HorizontalAlignment="Right" 
+                    Click="ListDishesPage"
                      />
         </Grid>
 
@@ -123,7 +117,7 @@
                 <Label Content="Телефон:" Style="{StaticResource LabelStyle}" />
                 <TextBox Text="{Binding ClientPhone}" FontSize="16" Height="30" Width="700" HorizontalAlignment="Left"/>
                 <Label Content="Комментарий к заказу:" Style="{StaticResource LabelStyle}" />
-                <TextBox Text="{Binding Comment}" FontSize="16" Height="30" Width="700" HorizontalAlignment="Left"/>
+                <TextBox Text="{Binding Comment}" FontSize="16" Height="51" Width="700" HorizontalAlignment="Left" TextWrapping="Wrap"/>
                 <Label Content="Курьер:" Style="{StaticResource LabelStyle}" />
                 <TextBox Text="{Binding SelectedCourier.Name}" FontSize="16" Height="30" Width="700" HorizontalAlignment="Left" IsEnabled="False"/>
                 <StackPanel Orientation="Horizontal">

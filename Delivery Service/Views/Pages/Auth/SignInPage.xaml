@@ -44,7 +44,7 @@
         <Grid x:Name="DataFields" Grid.Row="2">
             <Label x:Name="DescriptionPhoneField" 
                    Style="{StaticResource LabelStyle}"  
-                   Content="Телефон" 
+                   Content="Телефон (без +7)" 
                    Height="35" 
                    Margin="32,89,29,208"/>
             

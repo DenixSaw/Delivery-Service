@@ -31,6 +31,10 @@ namespace Delivery_Service.Views.Pages.Admin {
             NavigationService.Navigate(new ListOrderPage(_datamanager));
 
         }
+
+        private void ListDishesPage(object sender, RoutedEventArgs e) {
+            NavigationService.Navigate(new ListDishPage(_datamanager));
+        }
     }
 
 

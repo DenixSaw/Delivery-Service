@@ -16,13 +16,18 @@ namespace Delivery_Service.Services {
         }
 
         public IOrder? TryAdd(IOrder newOrder) {
+            _dataManager.CourierRepository.GetAll();
             if (_dataManager.OrderRepository.Add(newOrder)) {
-                //Courier courier  = (Courier)_dataManager.CourierRepository.GetById(newOrder.Courier);
-                //if (!courier.Orders.Contains(newOrder)) {
-                //    courier.Orders.Add(newOrder);
-                //}
-                //_dataManager.CourierRepository.Update(courier);
-                return newOrder; }
+                Courier courier = (Courier)_dataManager.CourierRepository.GetById(newOrder.Courier);
+                if (courier.Orders == null || courier.Orders.Contains(newOrder)) {
+                    courier.Orders = new List<IOrder>();
+                    courier.Orders.Add(newOrder);
+                } else {
+                    courier.Orders.Add(newOrder);
+                }
+                _dataManager.CourierRepository.Update(courier);
+                return newOrder;
+            }
             return null;
         }
 
