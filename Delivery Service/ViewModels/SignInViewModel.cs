@@ -7,6 +7,7 @@ using Delivery_Service.Commands;
 using System.Windows.Navigation;
 using Delivery_Service.Views.Windows;
 using System;
+using Delivery_Service.Utils;
 
 namespace Delivery_Service.ViewModel {
     public class SignInViewModel : BaseViewModel {
@@ -43,9 +44,9 @@ namespace Delivery_Service.ViewModel {
 
         public SignInViewModel(IDataManager dataManager, IAuthService authService) {
             _dataManager = dataManager;
+            _authService = authService;
             LoginCommand = new RelayCommand(Login);
             SetRoleCommand = new Command(SetRole, canexecutemethod => Role != null);
-            _authService = authService;
         }
 
         private void SetRole(object parameter) {
@@ -55,9 +56,7 @@ namespace Delivery_Service.ViewModel {
         public event Action? AdminLogInSuccess;
 
         private void Login() {
-            AuthService authService = new(_dataManager);
-            if (authService.TrySignIn(_phone, _password, _role) && (_role == "Admin")) {
-                MessageBox.Show(_dataManager?.CurrentUser?.Name, _dataManager?.CurrentUser?.Phone);
+            if (_authService.TrySignIn(_phone, _password, _role) && (_role == "Admin")) {
                 AdminLogInSuccess?.Invoke();
                 
             } else { MessageBox.Show("Проверьте корректность данных"); }

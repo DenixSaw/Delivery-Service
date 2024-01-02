@@ -4,6 +4,7 @@ using Delivery_Service.Model;
 using Delivery_Service.Model.Interfaces;
 using Delivery_Service.Model.Users;
 using Delivery_Service.Services;
+using Delivery_Service.Utils;
 using Delivery_Service.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -72,7 +73,7 @@ namespace Delivery_Service.ViewModels {
                 _dishCUDInteractor = new DishCUDInteractor(dataManager);
 
                 CurrentUserName = _dataManager.CurrentUser.Name;
-                CurrentUserRole = "(" + _dataManager.CurrentUser.Role + ")";
+                CurrentUserRole = RoleConverter.ConvertRole(_dataManager.CurrentUser.Role);
 
                 ObservableCollection<IProduct> dishes = new(_dataManager.DishRepository.GetAll());
                 Dishes = dishes;

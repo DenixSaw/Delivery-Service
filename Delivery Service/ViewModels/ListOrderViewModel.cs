@@ -4,6 +4,7 @@ using Delivery_Service.Entities;
 using Delivery_Service.Model;
 using Delivery_Service.Model.Interfaces;
 using Delivery_Service.Services;
+using Delivery_Service.Utils;
 using Delivery_Service.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -108,7 +109,7 @@ namespace Delivery_Service.ViewModels {
                 SetActualOrderStatusCommand = new RelayCommand(SetActualOrderStatus);
 
                 CurrentUserName = _dataManager.CurrentUser.Name;
-                CurrentUserRole = "(" + _dataManager.CurrentUser.Role + ")";
+                CurrentUserRole = RoleConverter.ConvertRole(_dataManager.CurrentUser.Role);
 
                 _dataManager.CourierRepository.GetAll();
                 _dataManager.UserRepository.GetAll();
@@ -150,14 +151,13 @@ namespace Delivery_Service.ViewModels {
         }
 
         private void SetActualOrderStatus() {
-            if (SelectedOrder != null && OrderStatus != NewOrderStatus) {
+            if (SelectedOrder != null && OrderStatus != NewOrderStatus && NewOrderStatus != "New") {
                 Order? updatedOrder = SelectedOrder as Order;
                 updatedOrder.OrderStatus = ConvertOrderStatusToEnum(NewOrderStatus);
                 if (_orderCUDInteractor != null && _orderCUDInteractor.TryUpdate(updatedOrder)) {
                     SelectedOrder.OrderStatus = ConvertOrderStatusToEnum(NewOrderStatus);
                     OrderStatus = ConvertOrderStatus(SelectedOrder.OrderStatus);
                 }
-
 
             }
         }

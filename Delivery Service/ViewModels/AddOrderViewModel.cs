@@ -28,7 +28,7 @@ namespace Delivery_Service.ViewModels {
         public string CurrentUserRole {
             get { return _currentUserRole; }
             private set {
-                _currentUserRole = value;
+                _currentUserRole = RoleConverter.ConvertRole(value);
                 OnPropertyChanged(nameof(CurrentUserRole));
             }
         }
@@ -148,7 +148,7 @@ namespace Delivery_Service.ViewModels {
 
                 //Установка текущего пользователя в углу окна
                 CurrentUserName = _dataManager.CurrentUser.Name;
-                CurrentUserRole = "(" + _dataManager.CurrentUser.Role + ")";
+                CurrentUserRole = RoleConverter.ConvertRole(_dataManager.CurrentUser.Role);
 
                 //Заполнение мапы для хранения блюд
                 ObservableCollection<IProduct>? dishes = new(_dataManager?.DishRepository.GetAll());
@@ -240,7 +240,6 @@ namespace Delivery_Service.ViewModels {
             }
             Cost = _calculator.Calculate(cart);
 
-            //MessageBox.Show(Cost.ToString());
 
             string errorMessage = "";
             Regex phoneRegex = new(@"^\+?[0-9]{11}$");
@@ -261,8 +260,8 @@ namespace Delivery_Service.ViewModels {
                     _selectedCourier.Id,
                     OrderStatus.New,
                     Cost);
-                MessageBox.Show(_orderCUDInteractor.TryAdd(order).ToString());
-            }
+                if (_orderCUDInteractor.TryAdd(order) != null) { MessageBox.Show("Заказ добавлен"); } else MessageBox.Show("Ошибка при добавлении заказа");
+            } else MessageBox.Show(errorMessage); 
         }
 
     }

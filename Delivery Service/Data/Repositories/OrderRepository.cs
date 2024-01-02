@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-//using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -59,7 +58,6 @@ namespace Delivery_Service.Data.Repositories {
             for (int i = 0; i < _orders?.Count; i++) {
                 if (_orders[i].Id == order.Id) {
                     _orders[i] = order;
-                    //string json = JsonSerializer.Serialize(_orders, new JsonSerializerOptions() { WriteIndented = true });
                     string json = JsonConvert.SerializeObject(_orders, Formatting.Indented, new JsonSerializerSettings() { TypeNameHandling = TypeNameHandling.All });
                     File.WriteAllText(_path, json);
                     return true;

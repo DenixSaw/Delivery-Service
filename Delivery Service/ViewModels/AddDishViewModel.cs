@@ -2,6 +2,7 @@
 using Delivery_Service.Model;
 using Delivery_Service.Model.Interfaces;
 using Delivery_Service.Services;
+using Delivery_Service.Utils;
 using Delivery_Service.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -22,7 +23,7 @@ namespace Delivery_Service.ViewModels {
         public string CurrentUserRole {
             get { return _currentUserRole; }
             private set {
-                _currentUserRole = value;
+                _currentUserRole = RoleConverter.ConvertRole(value);
                 OnPropertyChanged(nameof(CurrentUserRole));
             }
         }
@@ -92,7 +93,7 @@ namespace Delivery_Service.ViewModels {
                 _dishCUDInteractor = new DishCUDInteractor(dataManager);
 
                 CurrentUserName = _dataManager.CurrentUser.Name;
-                CurrentUserRole = "(" + _dataManager.CurrentUser.Role + ")";
+                CurrentUserRole = RoleConverter.ConvertRole(_dataManager.CurrentUser.Role);
             } else { throw new ArgumentException("Ошибка при установлении текущего пользователя"); }
 
             ObservableCollection<IProduct> dishes = new(_dataManager.DishRepository.GetAll());

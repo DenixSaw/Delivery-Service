@@ -44,7 +44,7 @@
                 FontFamily="Comic Sans MS"
                 HorizontalAlignment="Right"
                 Text="{Binding CurrentUserRole}"
-                Width="250" Margin="0,50,0,19"
+                Width="250" Margin="0,50,0,9"
                 />
 
 

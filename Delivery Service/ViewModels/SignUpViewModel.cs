@@ -91,10 +91,9 @@ namespace Delivery_Service.ViewModel {
             if (errorMessage.Length > 0)
                 MessageBox.Show(errorMessage);
             else {
-                if(_authService.TrySignUp(UserName,Phone,Password,RepeatedPassword, Role)) {
+                if (_authService.TrySignUp(UserName, Phone, Password, RepeatedPassword, Role)) {
                     MessageBox.Show("Вы успешно зарегистрировались");
-
-                }
+                } else MessageBox.Show("Пользователь уже существует");
             }
 
         }

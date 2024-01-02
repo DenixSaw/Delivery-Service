@@ -20,7 +20,6 @@ namespace Delivery_Service.Model.Interfaces {
         Guid Courier { get; set; }
         string Comment { get; set; }
         PaymentMethod PaymentMethod { get; set; }
-
         OrderStatus OrderStatus { get; set; }
 
     }

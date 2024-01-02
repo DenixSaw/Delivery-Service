@@ -9,7 +9,7 @@ namespace Delivery_Service.Model
 {
     public abstract class Product : IProduct {
         public Guid Id { get; }
-        public string Name { get; set; } = "Something";
+        public string Name { get; set; } 
         public string Title { get; set; }
         public decimal Price { get; set; }
 
