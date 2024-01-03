@@ -22,6 +22,7 @@ namespace Delivery_Service.Model.Users.User.Roles.Courier {
 
 
         public Courier(bool HasVehicle, List<IOrder> Orders, Guid UserId) {
+            if (UserId == Guid.Empty) throw new ArgumentException("Идентификатор курьера не может быть пустым");
             this.UserId = UserId;
             this.HasVehicle = HasVehicle;
             this.Orders = Orders;

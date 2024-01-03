@@ -40,6 +40,11 @@ namespace Delivery_Service.Entities {
         public OrderStatus OrderStatus { get; set; }
 
         public Order(Guid Id, DateTime DateOfAdding, IList<ICartObject> Products, string Address, IClient Client, string Comment, PaymentMethod PaymentMethod, Guid Courier, OrderStatus OrderStatus, decimal TotalCost) {
+            if (Id == Guid.Empty) throw new ArgumentException("Идентификатор заказа не может быть пустым");
+            if (DateOfAdding == DateTime.MinValue) throw new ArgumentException("Некорректная дата добавления заказа");
+            if (Address  == null || Address.Length == 0) throw new ArgumentException("Поле адрес у заказа не может быть пустым");
+            if (Products == null || Products.Count == 0) throw new ArgumentException("Количество продуктов в заказе не может быть равным нулю");
+            if (TotalCost <= 0) throw new ArgumentException("Цена заказа не может быть отрицательной или равной нулю");
             this.Id = Id;
             this.DateOfAdding = DateOfAdding;
             this.Products = Products;

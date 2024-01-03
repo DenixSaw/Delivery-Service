@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Delivery_Service.Views.Windows"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AdminWindow" Height="800" Width="1600" ResizeMode="NoResize"  FontSize="16" Loaded="WindowLoaded" >
+        Title="Delivery Service" Height="800" Width="1600" ResizeMode="NoResize"  FontSize="16" Loaded="WindowLoaded" >
     <Grid>
         <Frame x:Name="AdminFrame" NavigationUIVisibility="Hidden" ContentRendered="AdminFrame_ContentRendered"></Frame>
     </Grid>

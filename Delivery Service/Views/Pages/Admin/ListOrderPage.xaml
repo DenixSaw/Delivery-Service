@@ -131,7 +131,7 @@
                 <Label Content="Комментарий:" Style="{StaticResource LabelStyle}"/>
                 <TextBlock Text="{Binding SelectedOrder.Comment}" FontSize="16" Height="56"/>
                 <Label Content="Курьер:" Style="{StaticResource LabelStyle}" Width="70" HorizontalAlignment="Left"/>
-                <TextBlock Text="{Binding Courier}" FontSize="16" Height="25" Width="323" Margin="70,-30,520,0"/>
+                <TextBlock Text="{Binding Courier}" FontSize="16" Height="25" Width="682" Margin="70,-30,0,0"/>
 
                 <Label Content="Стоимость:" Style="{StaticResource LabelStyle}" Width="100" HorizontalAlignment="Left" Margin="0,-3,100,0" Height="28"/>
                 <TextBlock Text="{Binding SelectedOrder.TotalCost}" FontSize="16" Height="30" Width="140" Margin="100,-25,10,0" HorizontalAlignment="Left"/>

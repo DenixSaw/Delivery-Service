@@ -20,8 +20,9 @@ namespace Delivery_Service.Model {
         }
 
         public CartObject(IProduct product, int quantity) {
+            if (quantity < 0) throw new ArgumentException("Количетсво блюда в корзине должно быть неотрицательным");
             _quantity = quantity;
-            _product = product;
+            _product = product ?? throw new ArgumentException("Блюдо в корзине не может быть пустым");
         }
     }
 }

@@ -23,9 +23,8 @@ namespace Delivery_Service.Services {
                     courier.Orders = new List<IOrder> {
                         newOrder
                     };
-                } else {
-                    courier.Orders.Add(newOrder);
-                }
+                } else { courier.Orders.Add(newOrder); }
+                
                 _dataManager.CourierRepository.Update(courier);
                 return newOrder;
             }
@@ -33,13 +32,12 @@ namespace Delivery_Service.Services {
         }
 
         public bool TryDelete(IOrder order) {
-
             Courier courier = (Courier)_dataManager.CourierRepository.GetById(order.Courier);
-            
+
             if (order != null && _dataManager.OrderRepository.GetById(order.Id) != null) {
                 if (_dataManager.OrderRepository.Delete(order)) {
-                    foreach(var courierOrder in courier.Orders) {
-                       if (courierOrder.Id == order.Id) {
+                    foreach (var courierOrder in courier.Orders) {
+                        if (courierOrder.Id == order.Id) {
                             courier.Orders.Remove(courierOrder);
                             return _dataManager.CourierRepository.Update(courier);
                         }

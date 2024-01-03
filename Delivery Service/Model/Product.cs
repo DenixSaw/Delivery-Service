@@ -14,6 +14,9 @@ namespace Delivery_Service.Model
         public decimal Price { get; set; }
 
         public Product(Guid Id, string Name, string Title, decimal Price) {
+            if (Name.Length == 0) throw new ArgumentException("Название продукта не может быть пустым");
+            if (Id == Guid.Empty) throw new ArgumentException("Идентификатор продукта не может быть пустым");
+            if (Price <= 0) throw new ArgumentException("Цена продукта должна быть положительным числом");
             this.Name = Name;
             this.Price = Price;
             this.Title = Title;

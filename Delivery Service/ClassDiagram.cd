@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Delivery_Service.Entities.Order" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.5" Y="2.75" Width="1.5" />
+  <Class Name="Delivery_Service.Entities.Order" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAADAAAEAAACAAABAAAAAAAAAAAAAAACAAgAAAAAAAQ=</HashCode>
       <FileName>Model\Order.cs</FileName>
@@ -17,28 +17,28 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Delivery_Service.Model.Dish">
-    <Position X="15.75" Y="5.5" Width="1.5" />
+    <Position X="15.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Dish.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Delivery_Service.Model.Client" Collapsed="true">
-    <Position X="12.75" Y="4.75" Width="1.5" />
+  <Class Name="Delivery_Service.Model.Client">
+    <Position X="12.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>Model\Client.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="Delivery_Service.Model.CartObject" Collapsed="true">
-    <Position X="9.75" Y="4.5" Width="1.5" />
+  <Class Name="Delivery_Service.Model.CartObject">
+    <Position X="4" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAABAAAAAAAAAAAAAAAAAIAAgAAAAAA=</HashCode>
       <FileName>Model\CartObject.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.1" />
+    <Lollipop Position="0.26" />
   </Class>
   <Class Name="Delivery_Service.Model.Users.User.Roles.Courier.Courier" Collapsed="true">
     <Position X="9.75" Y="5.5" Width="1.5" />
@@ -49,7 +49,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Delivery_Service.Model.Users.Roles.Admin.Admin" Collapsed="true">
-    <Position X="7.25" Y="5" Width="1.5" />
+    <Position X="4.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Users\Roles\Admin\Admin.cs</FileName>
@@ -65,7 +65,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Delivery_Service.Services.DishCUDInteractor" BaseTypeListCollapsed="true">
-    <Position X="20.75" Y="3" Width="1.5" />
+    <Position X="20.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAkAAABAAAAA=</HashCode>
       <FileName>Services\DishCUDInteractor.cs</FileName>
@@ -73,15 +73,39 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="Delivery_Service.Services.OrderCUDInteractor" BaseTypeListCollapsed="true">
-    <Position X="22.75" Y="3" Width="1.5" />
+    <Position X="22.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAkAAABAAAAA=</HashCode>
       <FileName>Services\OrderCUDInteractor.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
+  <Class Name="Delivery_Service.Model.User" Collapsed="true">
+    <Position X="19" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAEAAAAAQAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Model\Users\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Delivery_Service.Data.DataManager">
+    <Position X="27.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gBAAAEAgAIAAAAQBEEAAAAAAAAAAAAAAAAAQABAAIAA=</HashCode>
+      <FileName>Data\DataManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Delivery_Service.Data.Repositories.AdminRepository" Collapsed="true">
+    <Position X="19.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAACAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIg=</HashCode>
+      <FileName>Data\Repositories\AdminRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Interface Name="Delivery_Service.Model.Interfaces.IOrder">
-    <Position X="11.75" Y="1.25" Width="1.5" />
+    <Position X="11.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAADAAAEAAACAAABAAAAAAAAAAAAAAACAAgAAAAAAAQ=</HashCode>
       <FileName>Model\Interfaces\IOrder.cs</FileName>
@@ -94,64 +118,92 @@
       <FileName>Model\Interfaces\IProduct.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Delivery_Service.Model.Interfaces.IDish" Collapsed="true">
-    <Position X="18.5" Y="1.25" Width="1.5" />
+  <Interface Name="Delivery_Service.Model.Interfaces.IDish">
+    <Position X="18.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Interfaces\IDish.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Delivery_Service.Model.Interfaces.IClient" Collapsed="true">
-    <Position X="14" Y="2.75" Width="1.5" />
+  <Interface Name="Delivery_Service.Model.Interfaces.IClient">
+    <Position X="13.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAIAAAAAA=</HashCode>
       <FileName>Model\Interfaces\IClient.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Delivery_Service.Model.Interfaces.ICartObject" Collapsed="true">
-    <Position X="9.75" Y="3.5" Width="1.5" />
+  <Interface Name="Delivery_Service.Model.Interfaces.ICartObject">
+    <Position X="5.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Model\Interfaces\ICartObject.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Delivery_Service.Model.Users.User.Roles.Courier.ICourier" Collapsed="true">
-    <Position X="9.75" Y="6.75" Width="1.5" />
+  <Interface Name="Delivery_Service.Model.Users.User.Roles.Courier.ICourier">
+    <Position X="8" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAAAAAAAAAAAAAAgAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Users\Roles\Courier\ICourier.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Delivery_Service.Model.Users.Roles.Admin.IAdmin" Collapsed="true">
-    <Position X="7.25" Y="6.25" Width="1.5" />
+  <Interface Name="Delivery_Service.Model.Users.Roles.Admin.IAdmin">
+    <Position X="7.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Users\Roles\Admin\IAdmin.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Delivery_Service.Services.IAuthService" Collapsed="true">
-    <Position X="18.75" Y="6" Width="1.5" />
+  <Interface Name="Delivery_Service.Services.IAuthService">
+    <Position X="16.75" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IAuthService.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Delivery_Service.Services.IBaseCUDInteractor&lt;T&gt;">
-    <Position X="21.5" Y="1.25" Width="1.5" />
+    <Position X="22.25" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAEAAABAAAAA=</HashCode>
       <FileName>Services\IBaseCUDInteractor.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="Delivery_Service.Model.Users.IUser">
+    <Position X="30.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAEAAAAAQAAAAAAAACAAAAIAAAAAA=</HashCode>
+      <FileName>Model\Users\IUser.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Delivery_Service.Data.Repositories.IBaseRepository&lt;T&gt;" Collapsed="true">
+    <Position X="24.25" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Data\Repositories\IBaseRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Delivery_Service.Data.IDataManager">
+    <Position X="1.25" Y="7" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAIAAAAQBEAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Data\IDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Delivery_Service.Utils.ICalculator">
+    <Position X="28.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\ICalculator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="Delivery_Service.Entities.PaymentMethod" Collapsed="true">
-    <Position X="5.25" Y="4" Width="1.5" />
+    <Position X="7.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAQAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>Model\Order.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Delivery_Service.Entities.OrderStatus" Collapsed="true">
-    <Position X="3.5" Y="4" Width="1.5" />
+    <Position X="1.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Order.cs</FileName>

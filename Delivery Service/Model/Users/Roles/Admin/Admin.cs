@@ -13,6 +13,7 @@ public class Admin : IAdmin {
     public Guid UserId { get; }
 
     public Admin(Guid Id) {
+        if (Id == Guid.Empty) throw new ArgumentException("Идентификатор пользователя не может быть пустым");
         this.UserId = Id;
     }
 
